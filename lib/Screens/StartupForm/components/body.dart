@@ -21,13 +21,13 @@ class _BodyState extends State<Body> {
   String apply = '';
 
   void createRecord() {
-    if (name == null ||
-        website == null ||
-        about == null ||
-        location == null ||
-        status == null ||
-        competitors == null ||
-        apply == null) {
+    if (name == '' ||
+        website == '' ||
+        about == '' ||
+        location == '' ||
+        status == '' ||
+        competitors == '' ||
+        apply == '') {
       return;
     } else {
       FirebaseFirestore.instance.collection('Startups').add({
@@ -39,14 +39,24 @@ class _BodyState extends State<Body> {
         'competitors': competitors,
         'apply': apply
       });
-      print(';Hello');
+      // print('Hello');
     }
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return SingleChildScrollView(
+        child: Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Colors.lightGreenAccent,
+            Colors.blue,
+          ],
+        ),
+      ),
       child: Column(
         // mainAxisAlignment: MainAxisAlignment,
         children: <Widget>[
@@ -120,7 +130,7 @@ class _BodyState extends State<Body> {
           RaisedButton(
             child: Text('Submit'),
             onPressed: () {
-              // submit();
+              createRecord();
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -130,6 +140,6 @@ class _BodyState extends State<Body> {
           ),
         ],
       ),
-    );
+    ));
   }
 }

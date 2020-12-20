@@ -3,6 +3,7 @@ import 'package:flutter_auth/Screens/IncubatorLogin/incubator_login_screen.dart'
 import 'package:flutter_auth/Screens/ListStartup/list_startup.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
+import 'package:flutter_auth/Screens/StartupForm/startupForm.dart';
 import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/constants.dart';
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
           LoginScreen.routeName: (ctx) => LoginScreen(),
           IncubatorLoginScreen.routeName: (ctx) => IncubatorLoginScreen(),
           UserStartup.routNamee: (ctx) => UserStartup(),
-          ListOfStartups.routeName: (ctx) => ListOfStartups()
+          ListOfStartups.routeName: (ctx) => ListOfStartups(),
+          StartupForm.routeName: (ctx) => StartupForm()
         },
       ),
     );

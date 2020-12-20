@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ListStartup/components/StartupDetails.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatefulWidget {
@@ -41,15 +42,24 @@ class _BodyState extends State<Body> {
         MaterialPageRoute(builder: (context) => StartupDetails(startup)));
   }
 
+  Future getData() async {
+    final User user = await FirebaseAuth.instance.currentUser;
+    final start = FirebaseFirestore.instance
+        .collection('Startups')
+        .where('userIfd', isEqualTo: user.uid)
+        .snapshots();
+    return start;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Container(
       child: FutureBuilder(
-          future: getStartup(),
+          future: getData(),
           builder: (_, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            if (!snapshot.hasData) {
               return Center(
                 child: Text("Loading"),
               );
@@ -59,20 +69,17 @@ class _BodyState extends State<Body> {
                   itemBuilder: (_, index) {
                     var id = inputData();
                     print(id);
-
-                    if (snapshot.data[index].data()['userId'] == inputData()) {
-                      return ListTile(
-                        onTap: () => navigateToStartup(snapshot.data[index]),
-                        title: Text(
-                          snapshot.data[index].data()['name'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.redAccent),
-                        ),
-                      );
-                    }
+                    return ListTile(
+                      onTap: () => navigateToStartup(snapshot.data[index]),
+                      title: Text(
+                        snapshot.data['name'],
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.redAccent),
+                      ),
+                    );
                   });
             }
           }),
