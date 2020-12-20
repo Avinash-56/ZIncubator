@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import './background.dart';
 import '../../../components/startup_multiple_input.dart';
-import '../../../components/rounded_button.dart';
+
 import '../../../components/startup_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -117,9 +117,16 @@ class _BodyState extends State<Body> {
               });
             },
           ),
-          RoundedButton(
-            text: "Submit",
-            press: () => createRecord(),
+          RaisedButton(
+            child: Text('Submit'),
+            onPressed: () {
+              // submit();
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            color: Colors.blueAccent,
+            textColor: Colors.white,
           ),
         ],
       ),

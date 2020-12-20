@@ -4,9 +4,9 @@ import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
 // import 'package:flutter_auth/authentication.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
-import 'package:flutter_auth/components/rounded_button.dart';
+
 import 'package:flutter_auth/components/rounded_input_field.dart';
-import 'package:flutter_auth/components/rounded_password_field.dart';
+
 import 'package:flutter_auth/models/authentication.dart';
 import 'package:provider/provider.dart';
 import '../../StartupForm/startupForm.dart';

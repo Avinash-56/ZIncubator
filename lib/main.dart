@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/IncubatorLogin/incubator_login_screen.dart';
+import 'package:flutter_auth/Screens/ListStartup/list_startup.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
@@ -35,7 +37,9 @@ class MyApp extends StatelessWidget {
         routes: {
           SignUpScreen.routeName: (ctx) => SignUpScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
-          UserStartup.routNamee: (ctx) => UserStartup()
+          IncubatorLoginScreen.routeName: (ctx) => IncubatorLoginScreen(),
+          UserStartup.routNamee: (ctx) => UserStartup(),
+          ListOfStartups.routeName: (ctx) => ListOfStartups()
         },
       ),
     );
