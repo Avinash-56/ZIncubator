@@ -17,9 +17,9 @@ class Body extends StatelessWidget {
             Text(
               "STARTUP ZZZ",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.purple,
+                fontWeight: FontWeight.w900,
+                fontSize: 28,
+                color: Colors.black87,
               ),
             ),
             SizedBox(height: size.height * 0.05),

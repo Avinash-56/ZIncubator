@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import './background.dart';
-import '../../../components/startup_multiple_input.dart';
 
 import '../../../components/startup_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -30,6 +28,10 @@ class _BodyState extends State<Body> {
         apply == '') {
       return;
     } else {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+
+      final User user = auth.currentUser;
+      final uid = user.uid;
       FirebaseFirestore.instance.collection('Startups').add({
         'name': name,
         'website': website,
@@ -37,7 +39,8 @@ class _BodyState extends State<Body> {
         'location': location,
         'status': status,
         'competitors': competitors,
-        'apply': apply
+        'apply': apply,
+        'userId': uid
       });
       // print('Hello');
     }

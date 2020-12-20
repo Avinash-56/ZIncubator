@@ -1,71 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_auth/Screens/Login/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
-import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
-// import 'package:flutter_auth/authentication.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
-
-import 'package:flutter_auth/components/rounded_input_field.dart';
 
 import 'package:flutter_auth/models/authentication.dart';
 import 'package:provider/provider.dart';
 import '../../StartupForm/startupForm.dart';
-import '../../UserStartup/user_startup.dart';
-// class Body extends StatelessWidget {
-//   final TextEditingController emailController = TextEditingController();
-//   final TextEditingController passwordController = TextEditingController();
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Background(
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[
-//           Text(
-//             "LOGIN TO YOUR ACCOUNT",
-//             style: TextStyle(fontWeight: FontWeight.bold),
-//           ),
-//           SizedBox(height: size.height * 0.03),
-//           SizedBox(height: size.height * 0.03),
-//           TextField(
-//             controller: emailController,
-//             decoration: InputDecoration(
-//               labelText: "Email",
-//             ),
-//           ),
-//           TextField(
-//             controller: passwordController,
-//             decoration: InputDecoration(
-//               labelText: "Password",
-//             ),
-//           ),
-//           RoundedButton(
-//             text: "LOGIN",
-//             press: () {
-//               context.read<AuthenticationService>().signIn(
-//                     email: emailController.text.trim(),
-//                     password: passwordController.text.trim(),
-//                   );
-//             },
-//           ),
-//           SizedBox(height: size.height * 0.03),
-//           AlreadyHaveAnAccountCheck(
-//             press: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                   builder: (context) {
-//                     return SignUpScreen();
-//                   },
-//                 ),
-//               );
-//             },
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class Body extends StatefulWidget {
   @override

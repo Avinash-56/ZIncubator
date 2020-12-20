@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/IncubatorLogin/components/background.dart';
 import 'package:flutter_auth/Screens/ListStartup/list_startup.dart';
-
-// import 'package:flutter_auth/components/rounded_button.dart';
-import 'package:flutter_auth/components/rounded_input_field.dart';
-// import 'package:flutter_auth/components/rounded_password_field.dart';
 
 class Body extends StatefulWidget {
   @override

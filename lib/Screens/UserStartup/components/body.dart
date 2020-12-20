@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ListStartup/components/StartupDetails.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatefulWidget {
@@ -10,18 +9,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  // Future getStartup() async {
-  //   // final FirebaseAuth auth = FirebaseAuth.instance;
-
-  //   // final User user = auth.currentUser;
-  //   // final uid = user.uid.toString();
-  //   // print(uid);
-  //   // here you write the codes to input the data into firestore
-  //   var firestore = FirebaseFirestore.instance;
-  //   QuerySnapshot qn = await firestore.collection('Startups').get();
-  //   return qn.docs;
-  // }
-
   Future getStartup() async {
     var firestore = FirebaseFirestore.instance;
     QuerySnapshot qn = await firestore.collection('Startups').get();
@@ -34,7 +21,6 @@ class _BodyState extends State<Body> {
     final User user = await auth.currentUser;
     final uid = user.uid;
     return uid;
-    // here you write the codes to input the data into firestore
   }
 
   navigateToStartup(DocumentSnapshot startup) {
