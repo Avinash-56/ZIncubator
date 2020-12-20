@@ -9,11 +9,11 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  Future getStartup() async {
-    var firestore = FirebaseFirestore.instance;
-    QuerySnapshot qn = await firestore.collection('Startups').get();
-    return qn.docs;
-  }
+  // Future getStartup() async {
+  //   var firestore = FirebaseFirestore.instance;
+  //   QuerySnapshot qn = await firestore.collection('Startups').get();
+  //   return qn.docs;
+  // }
 
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -32,7 +32,7 @@ class _BodyState extends State<Body> {
     final User user = await FirebaseAuth.instance.currentUser;
     final start = FirebaseFirestore.instance
         .collection('Startups')
-        .where('userIfd', isEqualTo: user.uid)
+        .where('userId', isEqualTo: user.uid)
         .snapshots();
     return start;
   }

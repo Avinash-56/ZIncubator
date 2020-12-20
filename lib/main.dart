@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           SignUpScreen.routeName: (ctx) => SignUpScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           IncubatorLoginScreen.routeName: (ctx) => IncubatorLoginScreen(),
-          UserStartup.routNamee: (ctx) => UserStartup(),
+          UserStartup.routeName: (ctx) => UserStartup(),
           ListOfStartups.routeName: (ctx) => ListOfStartups(),
           StartupForm.routeName: (ctx) => StartupForm()
         },

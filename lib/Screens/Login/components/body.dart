@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
+import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 
 import 'package:flutter_auth/models/authentication.dart';
@@ -42,7 +43,7 @@ class _BodyState extends State<Body> {
         _authData['email'],
         _authData['password'],
       );
-      Navigator.of(context).pushReplacementNamed(StartupForm.routeName);
+      Navigator.of(context).pushReplacementNamed(UserStartup.routeName);
     } catch (e) {
       var errorMessage = 'Authentication Failed. Try Again';
       _showErrorDialoge(errorMessage);

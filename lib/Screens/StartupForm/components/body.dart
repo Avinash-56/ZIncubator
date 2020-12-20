@@ -40,8 +40,17 @@ class _BodyState extends State<Body> {
         'status': status,
         'competitors': competitors,
         'apply': apply,
-        'userId': uid
       });
+      setState(() {
+        name = '';
+        website = '';
+        about = '';
+        location = '';
+        status = '';
+        competitors = '';
+        apply = '';
+      });
+
       // print('Hello');
     }
   }
