@@ -26,17 +26,6 @@ class Background extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 110,
-            left: 100,
-            child: Text(
-              "List of Startups",
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.purple,
-              ),
-            ),
-          ),
-          Positioned(
             bottom: 0,
             right: 0,
             child: Image.asset(

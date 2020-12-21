@@ -33,7 +33,7 @@ class _BodyState extends State<Body> {
               );
             } else {
               return Container(
-                  height: 200,
+                  height: 500,
                   child: ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (_, index) {

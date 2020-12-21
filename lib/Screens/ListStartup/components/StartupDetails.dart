@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import './background2.dart';
 
 class StartupDetails extends StatefulWidget {
   final DocumentSnapshot startup;
@@ -15,20 +16,18 @@ class _StartupDetailsState extends State<StartupDetails> {
     Size size = MediaQuery.of(context).size;
 
     final stat = widget.startup.data();
-    return Container(
-      color: Colors.white,
+    return Background(
       child: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment,
           children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Image.asset(
-                "assets/images/main_top.png",
-                width: size.width * 0.20,
-              ),
-            ),
+            // Positioned(
+            //   top: 0,
+            //   left: 0,
+            //   child: Image.asset(
+            //     "assets/images/main_top.png",
+            //     width: size.width * 0.20,
+            //   ),
+            // ),
             SizedBox(height: size.height * 0.03),
             // SizedBox(height: size.height * 0.09),
             Text(
@@ -88,15 +87,6 @@ class _StartupDetailsState extends State<StartupDetails> {
               ),
             ),
             SizedBox(height: size.height * 0.08),
-
-            Positioned(
-              bottom: 10,
-              right: 0,
-              child: Image.asset(
-                "assets/images/main_bottom.png",
-                width: size.width * 0.4,
-              ),
-            ),
           ],
         ),
       ),
