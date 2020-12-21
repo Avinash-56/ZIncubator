@@ -21,41 +21,81 @@ class _StartupDetailsState extends State<StartupDetails> {
         child: Column(
           // mainAxisAlignment: MainAxisAlignment,
           children: <Widget>[
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Image.asset(
+                "assets/images/main_top.png",
+                width: size.width * 0.20,
+              ),
+            ),
             SizedBox(height: size.height * 0.03),
-            SizedBox(height: size.height * 0.05),
+            // SizedBox(height: size.height * 0.09),
             Text(
               "Starup Details",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.purple,
-                  fontSize: 24),
+                  fontSize: 28),
             ),
             SizedBox(height: size.height * 0.03),
             SizedBox(height: size.height * 0.03),
-            Text(stat['name']),
             Text(
-              stat['website'],
-              style: TextStyle(fontSize: 22),
+              'Startup Name:  ${stat['name']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             Text(
-              'Loaction: ${stat['location']}',
-              style: TextStyle(fontSize: 22),
+              'Webiste: ${stat['website']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             Text(
-              stat['status'],
-              style: TextStyle(fontSize: 22),
+              'Location: ${stat['location']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             Text(
-              stat['about'],
-              style: TextStyle(fontSize: 22),
+              'Stage: ${stat['status']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             Text(
-              stat['competitors'],
-              style: TextStyle(fontSize: 22),
+              'About: ${stat['about']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(height: size.height * 0.03),
+            Text(
+              'Competitors:  ${stat['competitors']}',
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(height: size.height * 0.08),
+
+            Positioned(
+              bottom: 10,
+              right: 0,
+              child: Image.asset(
+                "assets/images/main_bottom.png",
+                width: size.width * 0.4,
+              ),
             ),
           ],
         ),

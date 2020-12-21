@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ListStartup/components/StartupDetails.dart';
+import './background.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -21,7 +22,8 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Size size = MediaQuery.of(context).size;
+    return Background(
       child: FutureBuilder(
           future: getStartups(),
           builder: (_, snapshot) {
@@ -30,21 +32,25 @@ class _BodyState extends State<Body> {
                 child: Text("Loading"),
               );
             } else {
-              return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (_, index) {
-                    return ListTile(
-                      onTap: () => navigateToStartup(snapshot.data[index]),
-                      title: Text(
-                        snapshot.data[index].data()['name'],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.redAccent),
-                      ),
-                    );
-                  });
+              return Container(
+                  height: 200,
+                  child: ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (_, index) {
+                      return ListTile(
+                        onTap: () => navigateToStartup(snapshot.data[index]),
+                        title: Text(
+                          snapshot.data[index].data()['name'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: Colors.black12,
+                              color: Colors.pink[900]),
+                        ),
+                      );
+                    },
+                  ));
             }
           }),
     );

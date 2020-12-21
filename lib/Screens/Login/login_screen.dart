@@ -9,7 +9,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "LOGIN TO YOUR ACCOUNT",
+          "Login To Your Account",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

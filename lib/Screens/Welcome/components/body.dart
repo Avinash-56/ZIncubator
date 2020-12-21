@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/IncubatorLogin/incubator_login_screen.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/components/background.dart';
+import 'package:flutter_auth/components/rounded_button.dart';
+import 'package:flutter_auth/constants.dart';
+import 'package:flutter_svg/svg.dart';
+import '../../IncubatorLogin/incubator_login_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -17,91 +20,56 @@ class Body extends StatelessWidget {
             Text(
               "STARTUP ZZZ",
               style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 28,
-                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
               ),
             ),
             SizedBox(height: size.height * 0.05),
-            SizedBox(height: size.height * 0.05),
-            ButtonTheme(
-              minWidth: 150,
-              height: 60,
-              child: RaisedButton(
-                color: Colors.indigo,
-                child: Text(
-                  'Login',
-                  style: TextStyle(fontSize: 24),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginScreen();
-                      },
-                    ),
-                  );
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                textColor: Colors.white,
-              ),
+            SvgPicture.asset(
+              "assets/icons/chat.svg",
+              height: size.height * 0.45,
             ),
-            SizedBox(height: size.height * 0.05),
-            ButtonTheme(
-              minWidth: 150,
-              height: 60,
-              child: RaisedButton(
-                color: Colors.greenAccent,
-                child: Text(
-                  'Signup',
-                  style: TextStyle(fontSize: 24),
-                ),
-                onPressed: () {
-                  // submit();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpScreen();
-                      },
-                    ),
-                  );
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                textColor: Colors.white,
-              ),
+            RoundedButton(
+              text: "INCUBATOR?",
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return IncubatorLoginScreen();
+                    },
+                  ),
+                );
+              },
             ),
-            SizedBox(height: size.height * 0.05),
-            ButtonTheme(
-              minWidth: 150,
-              height: 60,
-              child: RaisedButton(
-                color: Colors.purple,
-                child: Text(
-                  'Incubator?',
-                  style: TextStyle(fontSize: 24),
-                ),
-                onPressed: () {
-                  // submit();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return IncubatorLoginScreen();
-                      },
-                    ),
-                  );
-                },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                textColor: Colors.white,
-              ),
+            SizedBox(height: size.height * 0.005),
+            RoundedButton(
+              text: "LOGIN",
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                );
+              },
+            ),
+            RoundedButton(
+              text: "SIGN UP",
+              color: kPrimaryLightColor,
+              textColor: Colors.black,
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return SignUpScreen();
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
