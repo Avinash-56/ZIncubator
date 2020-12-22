@@ -14,6 +14,7 @@ class Background extends StatelessWidget {
       color: Colors.white,
       width: double.infinity,
       height: size.height,
+      // padding: EdgeInsets.all(),
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -30,6 +31,14 @@ class Background extends StatelessWidget {
             right: 0,
             child: Image.asset(
               "assets/images/login_bottom.png",
+              width: size.width * 0.4,
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            left: 60,
+            child: Image.asset(
+              "assets/images/admin_screen.png",
               width: size.width * 0.4,
             ),
           ),

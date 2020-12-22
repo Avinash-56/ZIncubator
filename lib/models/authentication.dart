@@ -7,9 +7,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class AuthenticationService with ChangeNotifier {
-  // final FirebaseAuth _firebaseAuth;
-
   AuthenticationService();
+
+  // Future<String> getUserId() async {
+  //   return (await _firebaseAuth.currentUser).uid;
+  // }
+  Future<String> getCurrentUID() async {
+    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    var id = (await _firebaseAuth.currentUser).uid;
+    print(id);
+  }
 
   Future<void> signIn(String email, String password) async {
     const url =
@@ -47,6 +54,15 @@ class AuthenticationService with ChangeNotifier {
     } catch (e) {
       throw e.message;
       ;
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+      return await _auth.signOut();
+    } catch (e) {
+      throw e.message;
     }
   }
 }

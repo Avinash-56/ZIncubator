@@ -15,6 +15,8 @@ class _BodyState extends State<Body> {
     return qn.docs;
   }
 
+  final double elevation = 3.5;
+
   navigateToStartup(DocumentSnapshot startup) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => StartupDetails(startup)));
@@ -33,20 +35,41 @@ class _BodyState extends State<Body> {
               );
             } else {
               return Container(
-                  height: 500,
+                  height: 400,
+                  width: size.width,
                   child: ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (_, index) {
-                      return ListTile(
-                        onTap: () => navigateToStartup(snapshot.data[index]),
-                        title: Text(
-                          snapshot.data[index].data()['name'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.black12,
-                              color: Colors.pink[900]),
+                      return Container(
+                        padding: EdgeInsets.all(5),
+                        child: ListTile(
+                          onTap: () => navigateToStartup(snapshot.data[index]),
+                          title: SizedBox(
+                            width: double.infinity,
+                            child: Card(
+                                // color: Colors.amber,
+                                elevation: elevation,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Icon(Icons.assignment_ind_rounded),
+                                    ),
+                                    Expanded(
+                                      flex: 6,
+                                      child: Text(
+                                        snapshot.data[index].data()['name'],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.bold,
+                                            // backgroundColor: Colors.black12,
+                                            color: Colors.pink[900]),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                          ),
                         ),
                       );
                     },

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
@@ -10,7 +14,9 @@ import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/models/authentication.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../StartupForm/startupForm.dart';
+import 'package:get/get.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -18,6 +24,21 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  String getEmail;
+
+  @override
+  // void initState() {
+  //   getValidationData().whenComplete(() async {
+  //     Timer(
+  //         Duration(seconds: 3),
+  //         () => Navigator.of(context).pushReplacementNamed(getEmail == null
+  //             ? WelcomeScreen.routeName
+  //             : StartupForm.routeName));
+  //   });
+  //   super.initState();
+  // }
+
+  final myController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {'email': '', 'password': ''};
 
@@ -38,16 +59,30 @@ class _BodyState extends State<Body> {
             ));
   }
 
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var preEmail = sharedPreferences.getString('email');
+    setState(() {
+      getEmail = preEmail;
+    });
+    print(getEmail);
+  }
+
   Future<void> submit() async {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
+
     try {
       await Provider.of<AuthenticationService>(context, listen: false).signIn(
         _authData['email'],
         _authData['password'],
       );
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setString('email', _authData['email']);
       Navigator.of(context).pushReplacementNamed(StartupForm.routeName);
     } catch (e) {
       var errorMessage = 'Authentication Failed. Try Again';
@@ -59,87 +94,6 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // return Stack(
-    //   children: <Widget>[
-    //     Container(
-    //       decoration: BoxDecoration(
-    //         gradient: LinearGradient(
-    //           colors: [
-    //             Colors.lightGreenAccent,
-    //             Colors.blue,
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //     Center(
-    //       child: Card(
-    //         shape: RoundedRectangleBorder(
-    //           borderRadius: BorderRadius.circular(10),
-    //         ),
-    //         child: Container(
-    //           height: 260,
-    //           width: 300,
-    //           padding: EdgeInsets.all(16),
-    //           child: Form(
-    //               key: _formKey,
-    //               child: SingleChildScrollView(
-    //                 child: Column(
-    //                   children: <Widget>[
-    //                     TextFormField(
-    //                       decoration: InputDecoration(labelText: 'Email'),
-    //                       keyboardType: TextInputType.emailAddress,
-    //                       validator: (value) {
-    //                         if (value.isEmpty) {
-    //                           return "Invalid Email";
-    //                         } else
-    //                           return null;
-    //                       },
-    //                       onSaved: (value) {
-    //                         _authData['email'] = value;
-    //                       },
-    //                     ),
-    //                     TextFormField(
-    //                       decoration: InputDecoration(labelText: 'Password'),
-    //                       obscureText: true,
-    //                       keyboardType: TextInputType.emailAddress,
-    //                       validator: (value) {
-    //                         if (value.isEmpty) {
-    //                           return "Password not valid";
-    //                         } else
-    //                           return null;
-    //                       },
-    //                       onSaved: (value) {
-    //                         _authData['password'] = value;
-    //                       },
-    //                     ),
-    //                     SizedBox(
-    //                       height: 30,
-    //                     ),
-    //                     RaisedButton(
-    //                       child: Text('Submit'),
-    //                       onPressed: () {
-    //                         submit();
-    //                       },
-    //                       shape: RoundedRectangleBorder(
-    //                         borderRadius: BorderRadius.circular(10),
-    //                       ),
-    //                       color: Colors.blueAccent,
-    //                       textColor: Colors.white,
-    //                     ),
-    //                     AlreadyHaveAnAccountCheck(
-    //                       press: () {
-    //                         Navigator.of(context)
-    //                             .pushReplacementNamed(SignUpScreen.routeName);
-    //                       },
-    //                     ),
-    //                   ],
-    //                 ),
-    //               )),
-    //         ),
-    //       ),
-    //     )
-    //   ],
-    // );
     return Background(
         child: Form(
       key: _formKey,
@@ -182,7 +136,7 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {
+              press: () async {
                 submit();
               },
             ),

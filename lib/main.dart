@@ -29,13 +29,14 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Startup ZZZ',
+        title: 'Z Combinator',
         theme: ThemeData(
           primaryColor: kPrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
         home: WelcomeScreen(),
         routes: {
+          WelcomeScreen.routeName: (ctx) => WelcomeScreen(),
           SignUpScreen.routeName: (ctx) => SignUpScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           IncubatorLoginScreen.routeName: (ctx) => IncubatorLoginScreen(),

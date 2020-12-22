@@ -26,7 +26,15 @@ class Background extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 110,
+            bottom: 0,
+            left: 0,
+            child: Image.asset(
+              "assets/images/startup_list.png",
+              width: size.width * 0.35,
+            ),
+          ),
+          Positioned(
+            top: 50,
             left: 100,
             child: Text(
               "List of Startups",

@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/IncubatorLogin/incubator_login_screen.dart';
 import 'package:flutter_auth/Screens/ListStartup/list_startup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../components/background.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/UserStartup/user_startup.dart';
@@ -18,9 +22,34 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
+String getEmail;
+
 class _BodyState extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {'email': '', 'password': ''};
+  // void initState() {
+  //   getValidationData().whenComplete(() async {
+  //     Timer(
+  //         Duration(seconds: 1),
+  //         () => Navigator.pushReplacement(context, MaterialPageRoute(
+  //               builder: (context) {
+  //                 return getEmail == null
+  //                     ? IncubatorLoginScreen()
+  //                     : ListOfStartups();
+  //               },
+  //             )));
+  //   });
+  //   super.initState();
+  // }
+
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var preEmail = sharedPreferences.getString('adminEmail');
+    setState(() {
+      getEmail = preEmail;
+    });
+  }
 
   void _showErrorDialoge(String msg) {
     showDialog(
@@ -40,20 +69,18 @@ class _BodyState extends State<Body> {
   }
 
   Future<void> submit() async {
-    print('hello');
-
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
+
     try {
-      // await Provider.of<AuthenticationService>(context, listen: false).signIn(
-      //   _authData['email'],
-      //   _authData['password'],
-      // );
       if (_authData['email'] == 'admin@gmail.com' &&
           _authData['password'] == 'admin123')
         Navigator.of(context).pushReplacementNamed(ListOfStartups.routeName);
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setString('adminEmail', _authData['email']);
     } catch (e) {
       var errorMessage = 'Authentication Failed. Try Again';
       _showErrorDialoge(errorMessage);

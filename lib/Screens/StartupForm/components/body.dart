@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/IncubatorLogin/components/background.dart';
 import 'package:intl/intl.dart';
 import '../../../components/startup_input_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -79,17 +80,17 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      width: double.infinity,
-      height: size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.white60,
-            Colors.white12,
-          ],
-        ),
-      ),
+    return Background(
+      // width: double.infinity,
+      // height: size.height,
+      // decoration: BoxDecoration(
+      //   gradient: LinearGradient(
+      //     colors: [
+      //       Colors.white60,
+      //       Colors.white12,
+      //     ],
+      //   ),
+      // ),
       child: SingleChildScrollView(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment,

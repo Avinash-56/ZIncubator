@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
@@ -11,6 +13,7 @@ import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/models/authentication.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../StartupForm/startupForm.dart';
 
 class Body extends StatefulWidget {
@@ -18,9 +21,32 @@ class Body extends StatefulWidget {
   _BodyState createState() => _BodyState();
 }
 
+String getEmail = '';
+
 class _BodyState extends State<Body> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   Map<String, String> _authData = {'email': '', 'password': ''};
+  // void initState() {
+  //   getValidationData().whenComplete(() async {
+  //     Timer(
+  //         Duration(seconds: 1),
+  //         () => Navigator.pushReplacement(context, MaterialPageRoute(
+  //               builder: (context) {
+  //                 return getEmail == null ? LoginScreen() : StartupForm();
+  //               },
+  //             )));
+  //   });
+  //   super.initState();
+  // }
+
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var preEmail = sharedPreferences.getString('email');
+    setState(() {
+      getEmail = preEmail;
+    });
+  }
 
   void _showErrorDialoge(String msg) {
     showDialog(
@@ -43,12 +69,17 @@ class _BodyState extends State<Body> {
     if (!_formKey.currentState.validate()) {
       return;
     }
+
     _formKey.currentState.save();
+
     try {
       await Provider.of<AuthenticationService>(context, listen: false).signIn(
         _authData['email'],
         _authData['password'],
       );
+      final SharedPreferences sharedPreferences =
+          await SharedPreferences.getInstance();
+      sharedPreferences.setString('email', _authData['email']);
       Navigator.of(context).pushReplacementNamed(UserStartup.routeName);
     } catch (e) {
       var errorMessage = 'Authentication Failed. Try Again';
